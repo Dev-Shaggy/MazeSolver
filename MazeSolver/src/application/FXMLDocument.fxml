@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FXMLDocumentController">
+    <center>
+        <TabPane prefHeight="200.0" prefWidth="200.0" styleClass="tabPane" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="Labirynt">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Button fx:id="btnStart" alignment="CENTER" layoutX="5.0" layoutY="205.0" mnemonicParsing="false" onAction="#buttonStart" prefHeight="25.0" prefWidth="150.0" text="Start" textAlignment="CENTER" AnchorPane.leftAnchor="5.0" />
+                                <Button alignment="CENTER" layoutX="5.0" layoutY="245.0" mnemonicParsing="false" onAction="#buttonStop" prefHeight="25.0" prefWidth="150.0" text="Stop" textAlignment="CENTER" AnchorPane.leftAnchor="5.0" />
+                                <Button alignment="CENTER" layoutX="5.0" layoutY="285.0" mnemonicParsing="false" onAction="#buttonReset" prefHeight="25.0" prefWidth="150.0" text="Reset" textAlignment="CENTER" />
+                                <Canvas fx:id="canvas" height="450.0" layoutX="160.0" layoutY="5.0" width="600.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="5.0" />
+                                <Group />
+                                <Button alignment="CENTER" layoutX="5.0" layoutY="42.0" mnemonicParsing="false" onAction="#buttonFile" prefHeight="25.0" prefWidth="150.0" text="Wczytaj z pliku" textAlignment="CENTER" AnchorPane.leftAnchor="5.0" />
+                                <MenuButton alignment="CENTER" layoutX="5.0" layoutY="165.0" mnemonicParsing="false" prefWidth="150.0" text="Algorytm przejścia" textAlignment="CENTER" AnchorPane.leftAnchor="5.0">
+                                    <items>
+                                        <RadioMenuItem fx:id="solve0" mnemonicParsing="false" onAction="#togglebuttonSolve" selected="true" text="Losowo">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="solves" />
+                                            </toggleGroup>
+                                        </RadioMenuItem>
+                                        <RadioMenuItem fx:id="solve1" mnemonicParsing="false" onAction="#togglebuttonSolve" text="Zgodnie z ruchem wskazówek" toggleGroup="$solves" />
+                                        <RadioMenuItem fx:id="solve2" mnemonicParsing="false" onAction="#togglebuttonSolve" text="Równolegle" toggleGroup="$solves" />
+                                        <RadioMenuItem fx:id="solve3" mnemonicParsing="false" onAction="#togglebuttonSolve" text="Wszerz" toggleGroup="$solves" />
+                                    </items>
+                                </MenuButton>
+                                <Label fx:id="labelNameSolve" layoutX="5.0" layoutY="135.0" prefWidth="150.0" text="Losowy" AnchorPane.leftAnchor="5.0" />
+                                <Button fx:id="showGraph" layoutX="5.0" layoutY="364.0" mnemonicParsing="false" onAction="#showGraph" prefHeight="25.0" prefWidth="150.0" text="Pokaż graf" textAlignment="CENTER" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Utwórz nowy">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="numrows" alignment="CENTER_RIGHT" layoutX="5.0" layoutY="40.0" prefWidth="150.0" promptText="liczba wierszy" styleClass="textField" AnchorPane.leftAnchor="5.0" />
+                                <TextField fx:id="numcolumns" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="100.0" prefWidth="150.0" promptText="liczba kolumn" styleClass="textField" AnchorPane.leftAnchor="5.0" />
+                                <Label layoutX="5.0" layoutY="20.0" styleClass="labelTekst" text="Liczba wierszy:" />
+                                <Label layoutX="5.0" layoutY="80.0" styleClass="labelTekst" text="Liczba kolumn:" AnchorPane.leftAnchor="5.0" />
+                                <Button alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="328.0" mnemonicParsing="false" onAction="#buttonNew" prefWidth="150.0" text="Generuj nowy" textAlignment="CENTER" AnchorPane.leftAnchor="5.0" />
+                                <Canvas fx:id="newCanvas" height="450.0" layoutX="160.0" layoutY="5.0" width="600.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="5.0" />
+                                <Button alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="368.0" mnemonicParsing="false" onAction="#buttonSave" prefWidth="150.0" text="Zapisz do pliku" textAlignment="CENTER" AnchorPane.leftAnchor="5.0" />
+                                <Button alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="408.0" mnemonicParsing="false" onAction="#buttonUse" prefWidth="150.0" text="Użyj" textAlignment="CENTER" AnchorPane.leftAnchor="5.0" />
+                                <Label layoutX="17.0" layoutY="231.0" text="Liczba pętli" />
+                                <TextField fx:id="odsetek" alignment="CENTER_RIGHT" layoutX="5.0" layoutY="255.0" prefWidth="150.0" promptText="liczba pętli" AnchorPane.leftAnchor="5.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Statystyki">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TableView fx:id="table" layoutX="20.0" layoutY="20.0" prefHeight="364.0" prefWidth="359.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                    <columns>
+                                        <TableColumn fx:id="Metoda" prefWidth="120.0" text="Metoda" />
+                                        <TableColumn fx:id="Iteracje" prefWidth="75.0" text="Iteracje" />
+                                        <TableColumn fx:id="Czas" prefWidth="75.0" text="Czas" />
+                                        <TableColumn fx:id="Slady" prefWidth="88.0" text="Odległość" />
+                                    </columns>
+                                </TableView>
+                        <Button fx:id="clear" layoutX="169.0" layoutY="397.0" mnemonicParsing="false" onAction="#buttonClear" text="Wyczyść" AnchorPane.bottomAnchor="30.0" />
+                        <VBox layoutX="386.0" prefHeight="421.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <BarChart fx:id="barChartIterations" prefWidth="390.0" title="Porówanie iteracji">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" fx:id="xAxisIterations" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" fx:id="yAxisIterations" />
+                                </yAxis>
+                              </BarChart>
+                              <BarChart fx:id="barChartTimes" prefWidth="390.0" title="Porówananie czasów">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" fx:id="xAxisTimes" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" fx:id="yAxisTimes"/>
+                                </yAxis>
+                              </BarChart>
+                              <BarChart fx:id="barChartLengths" title="Porównanie długości znalezionej ściezki">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" fx:id="xAxisLength" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" fx:id="yAxisLength" />
+                                </yAxis>
+                              </BarChart>
+                           </children>
+                        </VBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+    <top>
+        <Pane id="logo" nodeOrientation="RIGHT_TO_LEFT" prefHeight="70.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#buttonClose" prefWidth="100.0" text="Zamknij" />
+            </children>
+        </Pane>
+    </top>
+    <bottom>
+        <Pane id="footer" prefHeight="40.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+    </bottom>
+</BorderPane>

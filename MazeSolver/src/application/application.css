@@ -1,0 +1,12 @@
+#logo{
+    -fx-background-color: #666666;
+}
+#footer{
+    -fx-background-color: #666666;
+}
+#tabPane{
+    -fx-background-color: #aaaaaa;
+}
+.longText{
+    -fx-font-size: 20px;
+}
